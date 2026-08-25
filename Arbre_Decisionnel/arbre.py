@@ -21,3 +21,24 @@ print("Gain d'information =", gain)
 for z in [-2, 0, 2]:
     resultat = 1 / (1 + math.exp(-z))
     print("sigmoide de z =", z, "=>", resultat)
+
+
+# Test 1
+y = 1
+p = 0.9
+
+log_loss = -(y * math.log(p) + (1 - y) * math.log(1 - p))
+
+print("Pour y =", y, "et p =", p)
+print("Log Loss =", log_loss)
+print()
+
+
+# Test 2
+y = 1
+p = 0.1
+
+log_loss = -(y * math.log(p) + (1 - y) * math.log(1 - p))
+
+print("Pour y =", y, "et p =", p)
+print("Log Loss =", log_loss)
