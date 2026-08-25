@@ -1,0 +1,45 @@
+import math
+
+# ----------------------------------------------------
+# H(S) initial : 5 Oui et 5 Non sur 10 clients
+# ----------------------------------------------------
+p_oui = 5/10
+p_non = 5/10
+H_S = -p_oui*math.log2(p_oui) - p_non*math.log2(p_non)
+print("H(S) =", H_S)
+
+# ----------------------------------------------------
+# Gain pour AGE (Jeune: 5 clients -> 3 Non, 2 Oui)
+#              (Vieux: 5 clients -> 2 Non, 3 Oui)
+# ----------------------------------------------------
+H_jeune = -(3/5)*math.log2(3/5) - (2/5)*math.log2(2/5)
+H_vieux = -(2/5)*math.log2(2/5) - (3/5)*math.log2(3/5)
+
+H_apres_age = (5/10)*H_jeune + (5/10)*H_vieux
+gain_age = H_S - H_apres_age
+
+print("H(Jeune) =", H_jeune)
+print("H(Vieux) =", H_vieux)
+print("Gain(Age) =", gain_age)
+
+# ----------------------------------------------------
+# Gain pour REVENU (Faible: 5 clients -> 5 Non, 0 Oui)
+#                  (Eleve: 5 clients -> 0 Non, 5 Oui)
+# ----------------------------------------------------
+H_faible = 0   # groupe pur (100% Non)
+H_eleve = 0    # groupe pur (100% Oui)
+
+H_apres_revenu = (5/10)*H_faible + (5/10)*H_eleve
+gain_revenu = H_S - H_apres_revenu
+
+print("H(Faible) =", H_faible)
+print("H(Eleve) =", H_eleve)
+print("Gain(Revenu) =", gain_revenu)
+
+# ----------------------------------------------------
+# Conclusion
+# ----------------------------------------------------
+if gain_revenu > gain_age:
+    print("Meilleure premiere question : Revenu")
+else:
+    print("Meilleure premiere question : Age")
