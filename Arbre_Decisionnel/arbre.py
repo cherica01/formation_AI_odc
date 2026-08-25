@@ -20,4 +20,4 @@ print("Gain d'information =", gain)
 
 for z in [-2, 0, 2]:
     resultat = 1 / (1 + math.exp(-z))
-    print("z =", z, "=>", resultat)
+    print("sigmoide de z =", z, "=>", resultat)
