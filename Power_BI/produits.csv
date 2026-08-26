@@ -1,0 +1,6 @@
+﻿ID_Produit;Nom_Produit;Categorie;Prix_Unitaire_EUR;Cout_Unitaire_EUR
+P01;Écran 27 pouces;Matériel Informatique;250;150
+P02;Clavier Mécanique;Accessoires;80;35
+P03;Souris Sans Fil;Accessoires;45;18
+P04;Chaise Ergonomique;Mobilier;320;190
+P05;Casque Noise-Canceling;Audio;190;95
