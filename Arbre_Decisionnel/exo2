@@ -1,45 +1,136 @@
 import math
+import matplotlib.pyplot as plt
 
-# ----------------------------------------------------
-# H(S) initial : 5 Oui et 5 Non sur 10 clients
-# ----------------------------------------------------
+# ============================================================
+# PARTIE 1 : Le dataset
+# ============================================================
+# Chaque client : (Age, Revenu, Achat)
+data = [
+    ("Jeune", "Faible", "Non"),
+    ("Jeune", "Faible", "Non"),
+    ("Vieux", "Faible", "Non"),
+    ("Vieux", "Eleve",  "Oui"),
+    ("Vieux", "Eleve",  "Oui"),
+    ("Jeune", "Eleve",  "Oui"),
+    ("Jeune", "Faible", "Non"),
+    ("Vieux", "Faible", "Non"),
+    ("Jeune", "Eleve",  "Oui"),
+    ("Vieux", "Eleve",  "Oui"),
+]
+
+
+# ============================================================
+# PARTIE 2 : Calcul de l'entropie initiale H(S)
+# ============================================================
 p_oui = 5/10
 p_non = 5/10
 H_S = -p_oui*math.log2(p_oui) - p_non*math.log2(p_non)
-print("H(S) =", H_S)
+print("1) H(S) =", H_S)
 
-# ----------------------------------------------------
-# Gain pour AGE (Jeune: 5 clients -> 3 Non, 2 Oui)
-#              (Vieux: 5 clients -> 2 Non, 3 Oui)
-# ----------------------------------------------------
+
+# ============================================================
+# PARTIE 3 : Gain d'information pour AGE
+# ============================================================
+# Jeune : 5 clients -> 3 Non, 2 Oui
+# Vieux : 5 clients -> 2 Non, 3 Oui
 H_jeune = -(3/5)*math.log2(3/5) - (2/5)*math.log2(2/5)
 H_vieux = -(2/5)*math.log2(2/5) - (3/5)*math.log2(3/5)
 
 H_apres_age = (5/10)*H_jeune + (5/10)*H_vieux
 gain_age = H_S - H_apres_age
 
-print("H(Jeune) =", H_jeune)
-print("H(Vieux) =", H_vieux)
-print("Gain(Age) =", gain_age)
+print("\n2) Attribut AGE")
+print("   H(Jeune) =", H_jeune)
+print("   H(Vieux) =", H_vieux)
+print("   Gain(Age) =", gain_age)
 
-# ----------------------------------------------------
-# Gain pour REVENU (Faible: 5 clients -> 5 Non, 0 Oui)
-#                  (Eleve: 5 clients -> 0 Non, 5 Oui)
-# ----------------------------------------------------
-H_faible = 0   # groupe pur (100% Non)
-H_eleve = 0    # groupe pur (100% Oui)
+
+# ============================================================
+# PARTIE 4 : Gain d'information pour REVENU
+# ============================================================
+# Faible : 5 clients -> 5 Non, 0 Oui (groupe pur)
+# Eleve  : 5 clients -> 0 Non, 5 Oui (groupe pur)
+H_faible = 0
+H_eleve = 0
 
 H_apres_revenu = (5/10)*H_faible + (5/10)*H_eleve
 gain_revenu = H_S - H_apres_revenu
 
-print("H(Faible) =", H_faible)
-print("H(Eleve) =", H_eleve)
-print("Gain(Revenu) =", gain_revenu)
+print("\n3) Attribut REVENU")
+print("   H(Faible) =", H_faible)
+print("   H(Eleve) =", H_eleve)
+print("   Gain(Revenu) =", gain_revenu)
 
-# ----------------------------------------------------
-# Conclusion
-# ----------------------------------------------------
+
+# ============================================================
+# PARTIE 5 : Choix de la meilleure question (racine de l'arbre)
+# ============================================================
 if gain_revenu > gain_age:
-    print("Meilleure premiere question : Revenu")
+    meilleur_attribut = "Revenu"
+    meilleur_gain = gain_revenu
 else:
-    print("Meilleure premiere question : Age")
+    meilleur_attribut = "Age"
+    meilleur_gain = gain_age
+
+print(f"\n4) Meilleure premiere question : {meilleur_attribut} (gain = {meilleur_gain:.4f})")
+
+
+# ============================================================
+# PARTIE 6 : Verifier si les branches sont pures (arret ou pas)
+# ============================================================
+groupe_faible = [row for row in data if row[1] == "Faible"]
+groupe_eleve  = [row for row in data if row[1] == "Eleve"]
+
+def est_pur(groupe):
+    """Retourne la classe si tous les Achat sont identiques, sinon None."""
+    achats = [row[2] for row in groupe]
+    if len(set(achats)) == 1:
+        return achats[0]
+    return None
+
+classe_faible = est_pur(groupe_faible)
+classe_eleve = est_pur(groupe_eleve)
+
+print("\n5) Construction de l'arbre :")
+print(f"   Revenu = Faible -> {'Feuille pure: ' + classe_faible if classe_faible else 'pas pur, diviser encore'}")
+print(f"   Revenu = Eleve  -> {'Feuille pure: ' + classe_eleve if classe_eleve else 'pas pur, diviser encore'}")
+
+
+# ============================================================
+# PARTIE 7 : Dessiner l'arbre avec matplotlib
+# ============================================================
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.set_xlim(0, 10)
+ax.set_ylim(0, 8)
+ax.axis("off")
+
+box_style = dict(boxstyle="round,pad=0.5", facecolor="#cce5ff", edgecolor="black")
+leaf_style_oui = dict(boxstyle="round,pad=0.5", facecolor="#c8f7c5", edgecolor="black")
+leaf_style_non = dict(boxstyle="round,pad=0.5", facecolor="#f7c5c5", edgecolor="black")
+
+# Noeud racine
+ax.text(5, 7, f"{meilleur_attribut} ?", ha="center", va="center", fontsize=13, bbox=box_style)
+
+# Feuille gauche (Faible)
+style_gauche = leaf_style_non if classe_faible == "Non" else leaf_style_oui
+ax.text(2.5, 4, f"Achat = {classe_faible}\n({len(groupe_faible)}/{len(groupe_faible)})",
+        ha="center", va="center", fontsize=12, bbox=style_gauche)
+
+# Feuille droite (Eleve)
+style_droite = leaf_style_non if classe_eleve == "Non" else leaf_style_oui
+ax.text(7.5, 4, f"Achat = {classe_eleve}\n({len(groupe_eleve)}/{len(groupe_eleve)})",
+        ha="center", va="center", fontsize=12, bbox=style_droite)
+
+# Fleches
+ax.annotate("", xy=(2.5, 4.6), xytext=(4.3, 6.4), arrowprops=dict(arrowstyle="->", lw=1.5))
+ax.text(3.2, 5.7, "Faible", fontsize=11, color="darkred")
+
+ax.annotate("", xy=(7.5, 4.6), xytext=(5.7, 6.4), arrowprops=dict(arrowstyle="->", lw=1.5))
+ax.text(6.4, 5.7, "Eleve", fontsize=11, color="darkgreen")
+
+plt.title("Arbre de decision - Achat en fonction du Revenu", fontsize=14)
+plt.tight_layout()
+plt.savefig("arbre_decision.png", dpi=150)
+plt.show()
+
+print("\nImage enregistree : arbre_decision.png")
