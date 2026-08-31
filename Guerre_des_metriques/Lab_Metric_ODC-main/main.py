@@ -487,7 +487,7 @@ html = f"""<!DOCTYPE html>
 """
 
 OUTPUT_HTML.write_text(html, encoding="utf-8")
-print(f"Tableau de bord genere : {OUTPUT_HTML}")
+print(f"Tableau de bord genere : {OUTPUT_HTML}")                          
 
 try:
     webbrowser.open(OUTPUT_HTML.resolve().as_uri())

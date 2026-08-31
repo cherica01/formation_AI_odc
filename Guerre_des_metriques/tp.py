@@ -30,11 +30,14 @@ import matplotlib.pyplot as plt
 fpr, tpr, thresholds = roc_curve(df['y_true'], df['y_proba'])
 roc_auc = auc(fpr, tpr)
 
-plt.figure()
-plt.plot(fpr, tpr, label=f'ROC (AUC = {roc_auc:.3f})')
-plt.plot([0, 1], [0, 1], linestyle='--', color='gray', label='Aléatoire')
-plt.xlabel('Taux de Faux Positifs')
-plt.ylabel('Taux de Vrais Positifs (Rappel)')
-plt.title('Courbe ROC')
+plt.figure(figsize=(6, 5))
+plt.plot(fpr, tpr, color="steelblue", label=f"Courbe ROC (AUC = {roc_auc:.3f})")
+plt.plot([0, 1], [0, 1], linestyle="--", color="gray", label="Modèle aléatoire")
+plt.xlabel("Taux de Faux Positifs (FP / (FP+VN))")
+plt.ylabel("Taux de Vrais Positifs = Rappel")
+plt.title("Courbe ROC")
 plt.legend()
-plt.savefig('roc_curve.png')
+plt.tight_layout()
+plt.savefig("roc_curve.png", dpi=150)   # <- sauvegarde le fichier
+plt.show()                               # <- AFFICHE la fenêtre avec le graphique
+plt.close()
