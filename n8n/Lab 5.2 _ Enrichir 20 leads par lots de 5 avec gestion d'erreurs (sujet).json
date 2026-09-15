@@ -1,0 +1,227 @@
+{
+  "name": "Lab 5.2 : Enrichir 20 leads par lots de 5 avec gestion d'erreurs (sujet)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Main - Enrichissement Leads\n**Lab n8n** — Manual Trigger · IF · SWITCH · Loop Over Items · Merge · HTTP Request\n\nFlux : lire 20 leads -> filtrer `statut = nouveau` -> router par `secteur`\n-> enrichir **uniquement la route Tech** par lots de 5 -> reconcilier -> ecrire dans un .csv.",
+        "height": 140,
+        "width": 720,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2480,
+        272
+      ],
+      "id": "c497be02-d057-4f1e-a78b-0a01f3d01a7a",
+      "name": "Note 97b2ed"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.maikagency.dev/webhook/moulinette",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "={{ $json.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        672
+      ],
+      "id": "4f2be258-4531-44ea-9ab5-68bd8d1e367e",
+      "name": "Send to moulinette",
+      "notes": "le seul paramètre est 'data'"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        0,
+        672
+      ],
+      "id": "5e764964-a036-4ff5-8928-399796988b36",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "content": "`HTTP Request Indispensable` : sert à fetch des donnés externes à comparer avec **lead_non_enrichi** via un serveur externe.",
+        "height": 80,
+        "width": 326,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3cef1e70-0dc9-4885-ba06-373fde2b2f2a",
+      "name": "Note 98935d"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1696,
+        288
+      ],
+      "id": "cbae9c01-a461-4783-ae52-edd64a381370",
+      "name": "Execute workflow Manually"
+    },
+    {
+      "parameters": {
+        "content": "`Etape 0 edit` : variable **lead_non_enrichi** contenant la liste des leads de la société",
+        "height": 96,
+        "width": 208
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1488,
+        176
+      ],
+      "typeVersion": 1,
+      "id": "4ed33348-62d9-4bde-aef3-b037519a2b07",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "url": "=https://jsonplaceholder.typicode.com/users/{{ $json.id }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        96
+      ],
+      "id": "28a52aa0-96a7-4e91-8d5e-fadcb1e9968c",
+      "name": "HTTP Request - Enrichissement (Continue On Fail)",
+      "alwaysOutputData": true,
+      "notesInFlow": true,
+      "onError": "continueRegularOutput",
+      "notes": "Continue On Fail : 404 -> { error: ... } sur la sortie normale"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "18772a6c-bc74-4d7e-9735-ceea2c9b99bd",
+              "name": "=lead_non_enrichi",
+              "value": "[\n  {\n    \"id\": 13,\n    \"nom\": \"Laura Silva\",\n    \"email\": \"laura.silva@nextgen-soft.com\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 5,\n    \"nom\": \"Chelsey Dietrich\",\n    \"email\": \"Lucio_Hettinger@annie.ca\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 21,\n    \"nom\": \"Marc Lefevre\",\n    \"email\": \"m.lefevre@banque-atlas.fr\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Finance\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 1,\n    \"nom\": \"Leanne Graham\",\n    \"email\": \"Sincere@april.biz\",\n    \"statut\": \"contacté\",\n    \"secteur\": \"Finance\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 17,\n    \"nom\": \"Karim Haddad\",\n    \"email\": \"karim.haddad@assurvie-conseil\",\n    \"statut\": \"invalide\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 9,\n    \"nom\": \"Glenna Reichert\",\n    \"email\": \"Chaim_McDermott@dana.io\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 24,\n    \"nom\": \"Nadia Cherif\",\n    \"email\": \"n.cherif@quantumbyte.io\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 33,\n    \"nom\": \"Olivier Fabre\",\n    \"email\": \"o.fabre@medisys-group.fr\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Santé\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 2,\n    \"nom\": \"Ervin Howell\",\n    \"email\": \"Shanna@melissa.tv\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 29,\n    \"nom\": \"Sofia Marchetti\",\n    \"email\": \"s.marchetti@ledgerwise.eu\",\n    \"statut\": \"contacté\",\n    \"secteur\": \"Finance\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 10,\n    \"nom\": \"Clementina DuBuque\",\n    \"email\": \"Rey.Padberg@karina.biz\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 36,\n    \"nom\": \"Priya Sharma\",\n    \"email\": \"priya.sharma@stackwise.dev\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 6,\n    \"nom\": \"Mrs. Dennis Schulist\",\n    \"email\": \"Karley_Dach@jasper.info\",\n    \"statut\": \"contacté\",\n    \"secteur\": \"Santé\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 41,\n    \"nom\": \"Thomas Nkemba\",\n    \"email\": \"t.nkemba@atlas-invest.fr\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Finance\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 4,\n    \"nom\": \"Patricia Lebsack\",\n    \"email\": \"Julianne.OConner@kory.org\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 45,\n    \"nom\": \"Rania Belkacem\",\n    \"email\": \"r.belkacem@codesphere.io\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 52,\n    \"nom\": \"Samuel Kouassi\",\n    \"email\": \"samuel@@broken-mail\",\n    \"statut\": \"invalide\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 7,\n    \"nom\": \"Kurtis Weissnat\",\n    \"email\": \"Telly.Hoeger@billy.biz\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 48,\n    \"nom\": \"Ines Ferreira\",\n    \"email\": \"i.ferreira@vitalcare.pt\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Santé\",\n    \"enrichi\": \"FAUX\"\n  },\n  {\n    \"id\": 57,\n    \"nom\": \"Tania Volkov\",\n    \"email\": \"t.volkov@byteharbor.com\",\n    \"statut\": \"nouveau\",\n    \"secteur\": \"Tech\",\n    \"enrichi\": \"FAUX\"\n  }\n]",
+              "type": "array"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1488,
+        288
+      ],
+      "id": "ad6b8b63-53ea-4ed7-9546-5f1102329509",
+      "name": "Database",
+      "notes": "Tout ce qui est propre a votre compte se regle ici"
+    },
+    {
+      "parameters": {
+        "content": "`Etape finale export to file` : output la database finale enrichie grace aux donnés externes de la société",
+        "height": 80,
+        "width": 288,
+        "color": "#518443"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        288
+      ],
+      "typeVersion": 1,
+      "id": "c4b895c6-bad9-48b3-8510-acaf6c1c8610",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "`Testeur externe du résultat final` : Injectez ici la liste de votre résultat final si vous voulez tester le résultat. Paramètre autorisé 'data'",
+        "height": 80,
+        "width": 384
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        576
+      ],
+      "typeVersion": 1,
+      "id": "321ae431-ff13-4b8d-aefa-f3f05e5aee5f",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        384
+      ],
+      "id": "849e5fd8-7d5d-4a50-ad01-e277daa80fcf",
+      "name": "Exporter vers .csv"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Send to moulinette",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute workflow Manually": {
+      "main": [
+        [
+          {
+            "node": "Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4a5a022e-709e-4a46-9840-3d4e85d0521f",
+  "meta": {
+    "instanceId": "fc32598dfa6859be7bcf1f52dab99503e658b969c58034360283e6267769655d"
+  },
+  "id": "2UWD7UDRSwsYpBhc",
+  "tags": []
+}
