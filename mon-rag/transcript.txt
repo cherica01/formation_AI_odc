@@ -1,0 +1,60 @@
+Vous > Combien de jours de congés payés ai-je par an ?
+Bot  > Vous avez 25 jours de congés payés par an.
+       [ data\conges.txt, data\support.txt ]
+
+Vous > Quel jour dois-je venir au bureau ?
+Bot  > Je ne sais pas d'après les documents.
+       [ data\conges.txt, data\support.txt ]
+
+Vous > Comment joindre le support ?
+Bot  > Vous pouvez joindre le support en appelant le poste 4200 ou en envoyant un email à support@zenith.example.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Vous > Qui a gagné la Coupe du monde 2018 ?
+Bot  > Je ne sais pas d'après les documents.
+       [ data\conges.txt, data\support.txt ]
+
+Vous > Combien d'euros par mois reçoit-on pour les frais d'équipement en télétravail ?
+Bot  > 20 euros.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Vous > Au bout de combien de jours de préavis faut-il demander ses congés ?
+Bot  > 15 jours.
+       [ data\conges.txt, data\support.txt ]
+
+Vous > Tous les combien de jours doit-on changer son mot de passe ?
+Bot  > Tous les 90 jours.
+       [ data\conges.txt, data\support.txt ]
+
+Vous > Combien de jours de vacances ai-je chaque année ?
+Bot  > Vous bénéficiez de 25 jours de congés payés par an.
+       [ data\conges.txt, data\teletravail.txt ]
+
+Vous > Combien de jours par semaine puis-je travailler depuis chez moi ?
+Bot  > Vous pouvez travailler 3 jours par semaine depuis chez vous, après 6 mois d'ancienneté.
+       [ data\conges.txt, data\teletravail.txt ]
+
+Vous > À quelle heure ferme le service d'assistance informatique ?
+Bot  > Le service d'assistance informatique est joignable du lundi au vendredi de 8h à 18h.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Vous > Quel est le salaire moyen chez Zenith Tech ?
+Bot  > Je ne sais pas d'après les documents.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Vous > Combien de jours de congé pour un déménagement ?
+Bot  > Je ne sais pas d'après les documents.
+       [ data\conges.txt, data\teletravail.txt ]
+
+Vous > Y a-t-il une cantine dans l'entreprise ?
+Bot  > Non, il n'y a pas de cantine dans l'entreprise.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Vous > Combien de jours de congés ai-je et quel est le numéro du support ?
+Bot  > Vous avez 25 jours de congés payés par an. Le numéro du support est 4200.
+       [ data\conges.txt, data\support.txt ]
+
+Vous > Quel jour dois-je être présent et combien de jours de télétravail ai-je droit ?
+Bot  > Selon la charte du télétravail de Zenith Tech, vous devez être présent le mardi et vous avez droit à 3 jours de télétravail par semaine après 6 mois d'ancienneté.
+       [ data\conges.txt, data\teletravail.txt ]
+
