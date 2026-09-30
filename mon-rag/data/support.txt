@@ -1,0 +1,3 @@
+Support informatique de Zenith Tech.
+Le support est joignable au poste 4200 ou par email à support@zenith.example, du lundi au vendredi de 8h à 18h.
+Les mots de passe doivent être changés tous les 90 jours et contenir au moins 12 caractères.
