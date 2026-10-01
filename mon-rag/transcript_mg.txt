@@ -1,0 +1,48 @@
+Olona > Firy andro ny fialan-tsasatra isan-taona?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Olona > Andro inona no tsy maintsy tonga any am-piasana?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\teletravail.txt ]
+
+Olona > Firy andro isan'herinandro no azo atao ny asa avy any an-trano?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\teletravail.txt ]
+
+Olona > Ahoana no ifandraisana amin'ny fanohanana ara-teknika?
+Bot   > Izaka izaka, salariyata mihimihimo amin'aka mihimihimo ya securitey iray amin'aka mihimihimo ya personeala na profissionala, zana VPN iray amin'aka mihimihimo ya servira anaterahana na mihimihimo ya securitey iray amin'aka motsu pase.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Olona > Ohatrinona ny vola omena isam-bolana ho an'ny fitaovana amin'ny asa an-trano?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\teletravail.txt ]
+
+Olona > Isaky ny firy andro no tsy maintsy ovaina ny tenimiafina?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\support.txt ]
+
+Olona > Firy andro no azo entina amin'ny taona manaraka?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Olona > Firy andro fialan-tsasatra no omena rehefa manambady?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Olona > Firy andro fialan-tsasatra no anananao, ary inona ny laharana antsoina hifandraisana amin'ny fanohanana?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Olona > Ohatrinona ny karama salanany ao Zenith Tech?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Olona > Misy kantine ve ao amin'ny orinasa?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\support.txt, data\teletravail.txt ]
+
+Olona > Iza no nahazo ny Kaopy Eran-tany 2018?
+Bot   > Tsy fantatro araka ny antontan-taratasy.
+       [ data\conges.txt, data\teletravail.txt ]
+

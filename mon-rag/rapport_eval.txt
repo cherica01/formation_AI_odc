@@ -1,0 +1,64 @@
+
+===== FRANCAIS =====
+
+1. [OK] Combien de jours de congés payés par an ?
+     Réponse            : 25 jours de congés payés par an.
+
+2. [OK] Combien de jours de télétravail par semaine ?
+     Réponse            : 3 jours par semaine.
+
+3. [OK] Quel est le jour de présence obligatoire ?
+     Réponse            : Le mardi.
+
+4. [OK] Quelle est l'indemnité de télétravail ?
+     Réponse            : 20 euros par mois.
+
+5. [OK] Tous les combien de jours change-t-on son mot de passe ?
+     Réponse            : Tous les 90 jours.
+
+6. [OK] Quel est le numéro du support ?
+     Réponse            : Le numéro du support est le 4200.
+
+7. [OK] Quelle est la capitale de l'Australie ?
+     Réponse            : Je ne sais pas d'après les documents.
+
+>>> Score FRANCAIS : 7/7
+
+===== MALGACHE =====
+
+1. [OK] Firy andro ny fialan-tsasatra isan-taona?
+     Réponse            : 25 andro fialan-tsasatra isam-bolana.
+     Question traduite  : Combien de jours de congé par an?
+     Réponse en français: 25 jours de congés payés par an.
+
+2. [ECHEC] Firy andro isan'herinandro no azo atao ny asa avy any an-trano?
+     Réponse            : Tsy misy famantarana ao amin'ny politikan'ny Zenith Tech momba ny fialan-tsasatra amin'ny asa an-trano.
+     Question traduite  : Combien de jours par semaine est-il possible de faire des tâches ménagères?
+     Réponse en français: Il n'y a pas d'indication dans la politique de congés de Zenith Tech sur les tâches ménagères.
+
+3. [OK] Andro inona no tsy maintsy tonga any am-piasana?
+     Réponse            : Ny talata.
+     Question traduite  : Quel jour dois-je venir au travail?
+     Réponse en français: Mardi.
+
+4. [ECHEC] Ohatrinona ny vola omena isam-bolana ho an'ny fitaovana amin'ny asa an-trano?
+     Réponse            : Tsy fantatro araka ny antontan-taratasy.
+     Question traduite  : Combien de matériel est-il dépensé chaque mois pour les travaux ménagers?
+     Réponse en français: Je ne sais pas d'après les documents.
+
+5. [OK] Isaky ny firy andro no tsy maintsy ovaina ny tenimiafina?
+     Réponse            : Isaky ny 90 andro.
+     Question traduite  : Combien de fois le mot de passe doit-il être changé?
+     Réponse en français: Tous les 90 jours.
+
+6. [OK] Inona ny laharana antsoina hifandraisana amin'ny fanohanana?
+     Réponse            : Ny adiresy fifandraisana amin'ny fanohanana dia ny 4200 na ny adiresy mailaka support@zenith.example.
+     Question traduite  : Quel numéro de contact est appelé pour le soutien?
+     Réponse en français: Le numéro de contact pour le soutien est le poste 4200 ou l'adresse email support@zenith.example.
+
+7. [OK] Iza no lohan'ny fanjakana any Aostralia?
+     Réponse            : Tsy fantatro araka ny antontan-taratasy.
+     Question traduite  : Qui est le chef de l'État en Australie?
+     Réponse en français: Je ne sais pas d'après les documents.
+
+>>> Score MALGACHE : 5/7
